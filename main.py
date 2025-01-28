@@ -32,6 +32,7 @@ def main():
     asteroid_field = AsteroidField()
     dt = 0
 
+# game loop
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -43,15 +44,15 @@ def main():
                 if player.collides_with(asteroid):
                     print("Game Over!")
                     sys.exit()
+                for shot in shots:
+                 if shot.collides_with(asteroid):
+                     asteroid.kill()
 
         screen.fill("black")
         
         for drawing in drawable:
             drawing.draw(screen)
 
-        # player.update(dt)
-
-        # player.draw(screen)
         pygame.display.flip()
 
         # limit the framerate to 60 FPS
